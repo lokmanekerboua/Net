@@ -15,10 +15,12 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.example.net.ui.graphs.Screens
 import com.example.net.utils.Constants
 
 @Composable
-fun Signup() {
+fun Signup(navController: NavController) {
     var email by remember {
         mutableStateOf("")
     }
@@ -147,7 +149,11 @@ fun Signup() {
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedButton(
                 onClick = {
-
+                          navController.navigate(Screens.LoginScreen.route){
+                              popUpTo(Screens.LoginScreen.route){
+                                  inclusive = true
+                              }
+                          }
                 },
                 modifier = Modifier
                     .width(150.dp)

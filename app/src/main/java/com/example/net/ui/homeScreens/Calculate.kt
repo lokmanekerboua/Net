@@ -21,10 +21,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.net.model.Operationinfo
+import com.example.net.utils.Constants.Companion.fontfamily
 import com.example.net.utils.operations
 
 @Composable
-fun Calcule(navController: NavController) {
+fun Calculate(navController: NavController) {
 
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -34,14 +35,14 @@ fun Calcule(navController: NavController) {
             contentPadding = PaddingValues(vertical = 12.dp, horizontal = 12.dp),
             content = {
                 items(operations) { operation ->
-                    CardCard(operation = operation,navController)
+                    CardCard(operation = operation, navController)
                 }
             })
     }
 }
 
 @Composable
-fun CardCard(operation : Operationinfo, navController: NavController) {
+fun CardCard(operation: Operationinfo, navController: NavController) {
     Card(
         elevation = 5.dp,
         shape = RoundedCornerShape(5.dp),
@@ -49,12 +50,14 @@ fun CardCard(operation : Operationinfo, navController: NavController) {
             .padding(top = 5.dp, bottom = 5.dp, start = 10.dp, end = 10.dp)
             .fillMaxSize()
             .clickable {
-
+                navController.navigate(operation.route)
             }
     ) {
         Column {
             Image(
-                imageVector = operation.icon , contentDescription = null, contentScale = ContentScale.Fit,
+                imageVector = operation.icon,
+                contentDescription = null,
+                contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp)
@@ -65,6 +68,7 @@ fun CardCard(operation : Operationinfo, navController: NavController) {
                 Text(
                     text = operation.name,
                     fontWeight = FontWeight.Bold,
+                    fontFamily = fontfamily,
                     fontSize = 18.sp,
                     textAlign = TextAlign.Start,
                     modifier = Modifier.align(Alignment.Start),
@@ -72,6 +76,7 @@ fun CardCard(operation : Operationinfo, navController: NavController) {
                 Text(
                     text = operation.description,
                     fontWeight = FontWeight.Normal,
+                    fontFamily = fontfamily,
                     modifier = Modifier.align(Alignment.Start),
                     textAlign = TextAlign.Start
                 )
@@ -83,6 +88,6 @@ fun CardCard(operation : Operationinfo, navController: NavController) {
 
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
-fun show (){
-    Calcule(navController = rememberNavController())
+fun show() {
+    Calculate(navController = rememberNavController())
 }

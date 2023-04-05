@@ -25,5 +25,9 @@ class Constants {
         val IPV4_SCREEN: String = "ipv4"
         val BIN2DEC_SCREEN: String = "bin2dec"
         val BIN2HEX_SCREEN: String = "bin2hex"
+
+        val AUTH_NAV_GRAPH : String = "authgraph"
+        val ROOT_NAV_GRAPH : String = "rootgraph"
+        val HOME_NAV_GRAPH : String = "homegraph"
     }
 }

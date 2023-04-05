@@ -17,10 +17,13 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.example.net.ui.graphs.Screens
 import com.example.net.utils.Constants.Companion.fontfamily
 
 @Composable
-fun Login() {
+fun Login(navController: NavController) {
 
     var email by remember {
         mutableStateOf("")
@@ -98,7 +101,8 @@ fun Login() {
             Spacer(modifier = Modifier.height(20.dp))
             Button(
                 onClick = {
-
+                    navController.popBackStack()
+                    navController.navigate(Screens.HomeScreen.route)
                 }, modifier = Modifier
                     .height(40.dp)
                     .width(150.dp),
@@ -113,7 +117,7 @@ fun Login() {
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedButton(
                 onClick = {
-
+                          navController.navigate(Screens.SignupScreen.route)
                 },
                 modifier = Modifier
                     .width(150.dp)
@@ -128,8 +132,8 @@ fun Login() {
 
 }
 
-@Preview(showBackground = true , showSystemUi = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun showlogin(){
-    Login()
+fun showlogin() {
+    Login(navController = rememberNavController())
 }

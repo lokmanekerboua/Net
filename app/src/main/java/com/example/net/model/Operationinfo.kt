@@ -6,4 +6,5 @@ data class Operationinfo(
     val name : String,
     val description : String,
     val icon : ImageVector,
+    val route : String
 )
