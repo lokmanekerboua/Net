@@ -6,8 +6,10 @@ import com.example.net.utils.Constants.Companion.HOME_SCREEN
 import com.example.net.utils.Constants.Companion.IPV4_SCREEN
 import com.example.net.utils.Constants.Companion.LOGIN_SCREEN
 import com.example.net.utils.Constants.Companion.SIGNUP_SCREEN
+import com.example.net.utils.Constants.Companion.SPLASH_SCREEN
 
 sealed class Screens(val route: String) {
+    object SplashScreen : Screens(SPLASH_SCREEN)
     object LoginScreen : Screens(LOGIN_SCREEN)
     object SignupScreen : Screens(SIGNUP_SCREEN)
 

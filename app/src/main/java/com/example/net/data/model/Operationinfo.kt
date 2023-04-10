@@ -1,4 +1,4 @@
-package com.example.net.model
+package com.example.net.data.model
 
 import androidx.compose.ui.graphics.vector.ImageVector
 

@@ -1,5 +1,6 @@
 package com.example.net.ui.authScreens
 
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -17,21 +18,30 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.net.data.model.User1
+import com.example.net.ui.appViewModel
 import com.example.net.ui.graphs.Screens
 import com.example.net.utils.Constants.Companion.fontfamily
+import kotlinx.coroutines.delay
 
 @Composable
 fun Login(navController: NavController) {
 
-    var email by remember {
+    val appViewModel: appViewModel = hiltViewModel()
+    val logres by appViewModel.logresponse.collectAsStateWithLifecycle()
+
+    var username by remember {
         mutableStateOf("")
     }
 
     var password by remember {
         mutableStateOf("")
     }
+
 
     Box(
         modifier = Modifier
@@ -53,8 +63,10 @@ fun Login(navController: NavController) {
             Divider()
             Spacer(modifier = Modifier.height(60.dp))
             OutlinedTextField(
-                value = email,
-                onValueChange = { email = it },
+                value = username,
+                onValueChange = {
+                    username = it
+                },
                 modifier = Modifier.fillMaxWidth(),
                 enabled = true,
                 readOnly = false,
@@ -65,11 +77,22 @@ fun Login(navController: NavController) {
                     color = Color.Black
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-                label = { Text(text = "email", fontFamily = fontfamily) },
+                label = { Text(text = "username", fontFamily = fontfamily) },
                 maxLines = 1,
                 minLines = 1,
-
-                )
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    textColor = Color.Black,
+                    backgroundColor = Color.White,
+                    cursorColor = Color.Black,
+                    errorCursorColor = Color.Red,
+                    errorBorderColor = Color.Red,
+                    errorLabelColor = Color.Red,
+                    focusedLabelColor = Color.Black,
+                    focusedBorderColor = Color.Black,
+                    unfocusedBorderColor = Color.Gray,
+                    unfocusedLabelColor = Color.Gray
+                ),
+            )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
                 value = password,
@@ -86,7 +109,19 @@ fun Login(navController: NavController) {
                 label = { Text(text = "password", fontFamily = fontfamily) },
                 maxLines = 1,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-                visualTransformation = PasswordVisualTransformation()
+                visualTransformation = PasswordVisualTransformation(),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    textColor = Color.Black,
+                    backgroundColor = Color.White,
+                    cursorColor = Color.Black,
+                    errorCursorColor = Color.Red,
+                    errorBorderColor = Color.Red,
+                    errorLabelColor = Color.Red,
+                    focusedLabelColor = Color.Black,
+                    focusedBorderColor = Color.Black,
+                    unfocusedBorderColor = Color.Gray,
+                    unfocusedLabelColor = Color.Gray
+                ),
             )
             Spacer(modifier = Modifier.height(5.dp))
             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterEnd) {
@@ -101,8 +136,17 @@ fun Login(navController: NavController) {
             Spacer(modifier = Modifier.height(20.dp))
             Button(
                 onClick = {
-                    navController.popBackStack()
-                    navController.navigate(Screens.HomeScreen.route)
+
+                    appViewModel.logUser(username, password)
+                    Log.d("onclickkkkkkkkkkkkkkkk", logres)
+
+                    if (logres.equals("success")) {
+                        navController.popBackStack()
+                        navController.navigate(Screens.HomeScreen.route)
+                    }else{
+
+                    }
+
                 }, modifier = Modifier
                     .height(40.dp)
                     .width(150.dp),
@@ -117,7 +161,7 @@ fun Login(navController: NavController) {
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedButton(
                 onClick = {
-                          navController.navigate(Screens.SignupScreen.route)
+                    navController.navigate(Screens.SignupScreen.route)
                 },
                 modifier = Modifier
                     .width(150.dp)
@@ -131,6 +175,13 @@ fun Login(navController: NavController) {
     }
 
 }
+
+//fun isValidUser(emailStr: String?) =
+//    Pattern
+//        .compile(
+//            "^[A-Z0-9]$",
+//            Pattern.CASE_INSENSITIVE
+//        ).matcher(emailStr).find()
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable

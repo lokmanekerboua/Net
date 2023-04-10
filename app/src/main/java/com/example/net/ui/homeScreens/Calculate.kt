@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.net.model.Operationinfo
+import com.example.net.data.model.Operationinfo
 import com.example.net.utils.Constants.Companion.fontfamily
 import com.example.net.utils.operations
 

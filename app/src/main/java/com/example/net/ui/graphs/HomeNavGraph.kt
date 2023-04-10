@@ -11,10 +11,11 @@ import com.example.net.ui.calcScreens.bin2hex
 import com.example.net.ui.homeScreens.Calculate
 import com.example.net.ui.homeScreens.Devices
 import com.example.net.ui.homeScreens.Profile
+import com.example.net.utils.Constants.Companion.HOME_NAV_GRAPH
 
 @Composable
 fun HomeNavGraph(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = CalcScreens.Devices.route) {
+    NavHost(navController = navController, startDestination = CalcScreens.Devices.route , route = HOME_NAV_GRAPH) {
         composable(route = CalcScreens.Devices.route) {
             Devices(navController)
         }

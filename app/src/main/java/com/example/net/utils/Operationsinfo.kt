@@ -2,7 +2,7 @@ package com.example.net.utils
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
-import com.example.net.model.Operationinfo
+import com.example.net.data.model.Operationinfo
 import com.example.net.ui.graphs.Screens
 
 val operations = listOf(

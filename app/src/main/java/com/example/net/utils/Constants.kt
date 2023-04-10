@@ -7,6 +7,7 @@ import com.example.net.R
 
 class Constants {
     companion object {
+        //------------------------------------font poppins-------------------------------------------
         val fontfamily = FontFamily(
             Font(R.font.poppins_regular, FontWeight.Normal),
             Font(R.font.poppins_bold, FontWeight.Bold),
@@ -16,18 +17,23 @@ class Constants {
             Font(R.font.poppins_light, FontWeight.Light),
         )
 
-        val LOGIN_SCREEN: String = "login"
-        val SIGNUP_SCREEN: String = "signup"
-        val HOME_SCREEN: String = "home"
-        val DEVICES_SCREEN: String = "devices"
-        val CALCULATE_SCREEN: String = "calculate"
-        val PROFILE_SCREEN: String = "profile"
-        val IPV4_SCREEN: String = "ipv4"
-        val BIN2DEC_SCREEN: String = "bin2dec"
-        val BIN2HEX_SCREEN: String = "bin2hex"
+        //------------------------------------------screens const-----------------------------------------------
+        const val SPLASH_SCREEN: String = "splash"
+        const val LOGIN_SCREEN: String = "login"
+        const val SIGNUP_SCREEN: String = "signup"
+        const val HOME_SCREEN: String = "home"
+        const val DEVICES_SCREEN: String = "devices"
+        const val CALCULATE_SCREEN: String = "calculate"
+        const val PROFILE_SCREEN: String = "profile"
+        const val IPV4_SCREEN: String = "ipv4"
+        const val BIN2DEC_SCREEN: String = "bin2dec"
+        const val BIN2HEX_SCREEN: String = "bin2hex"
+        const val AUTH_NAV_GRAPH: String = "authgraph"
+        const val ROOT_NAV_GRAPH: String = "rootgraph"
+        const val HOME_NAV_GRAPH: String = "homegraph"
 
-        val AUTH_NAV_GRAPH : String = "authgraph"
-        val ROOT_NAV_GRAPH : String = "rootgraph"
-        val HOME_NAV_GRAPH : String = "homegraph"
+        //------------------------------------------API data-------------------------------------------------------
+        const val BASE_URL = "http://10.0.0.2:3300/"
+        const val USERS_URL = "users"
     }
 }
