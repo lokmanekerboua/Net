@@ -13,8 +13,6 @@ data class UserRes(
     val company: String,
     val name: String,
     val birthyear: String,
-    val role: String,
-    val type: String,
     val password: String,
     val email: String,
     val username: String,

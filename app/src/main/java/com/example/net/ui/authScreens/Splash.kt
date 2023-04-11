@@ -3,6 +3,7 @@ package com.example.net.ui.authScreens
 import android.content.Context
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
@@ -16,8 +17,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import com.example.net.R
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.net.ui.graphs.Screens
@@ -33,7 +35,7 @@ fun AnimatedSplashScreen(navController: NavController) {
         targetValue = if (startanimation) 1f else 0f,
         animationSpec = tween(durationMillis = 2000)
     )
-    LaunchedEffect(key1 = true){
+    LaunchedEffect(key1 = true) {
         startanimation = true
         delay(3000)
         navController.popBackStack()
@@ -49,9 +51,9 @@ fun Splash(alpha: Float) {
             modifier = Modifier
                 .size(120.dp)
                 .alpha(alpha),
-            imageVector = Icons.Default.Email,
+            painter = painterResource(id = R.drawable.net1),
             contentDescription = null,
-            tint = Color.Black
+            tint = colorResource(id = R.color.green)
         )
     }
 }
