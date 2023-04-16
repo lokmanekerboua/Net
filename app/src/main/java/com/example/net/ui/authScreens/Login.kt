@@ -168,21 +168,24 @@ fun Login(navController: NavController) {
             Spacer(modifier = Modifier.height(20.dp))
             Button(
                 onClick = {
-                    if (username.trim().equals("") || password.trim().equals("")) {
-                        Toast.makeText(
-                            context,
-                            "please fill all fields",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else if (!usernameError || !passwordError) {
-                        appViewModel.logUser(username, password)
-                    } else {
-                        Toast.makeText(
-                            context,
-                            "username or password mal typed",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+//                    if (username.trim().equals("") || password.trim().equals("")) {
+//                        Toast.makeText(
+//                            context,
+//                            "please fill all fields",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                    } else if (!usernameError || !passwordError) {
+//                        appViewModel.logUser(username, password)
+//                    } else {
+//                        Toast.makeText(
+//                            context,
+//                            "username or password mal typed",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                    }
+                    navController.popBackStack()
+                    navController.navigate(Screens.HomeScreen.route)
+
                 }, modifier = Modifier
                     .height(40.dp)
                     .width(150.dp),
@@ -215,6 +218,7 @@ fun Login(navController: NavController) {
                 Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                 Log.d("faail", "the fail is : " + it.message)
             }
+
             is Resource.Loading -> {}
             is Resource.Success -> {
                 Log.d("messsge", "the response from server is : " + it.data)
@@ -255,7 +259,11 @@ fun isValidatePassword(password: String?) = Pattern.compile(
     Pattern.CASE_INSENSITIVE
 ).matcher(password).find()
 
-@Preview(showBackground = true, showSystemUi = true)
+@Preview(
+    showBackground = true,
+    showSystemUi = true,
+    device = "spec:shape=Normal,width=640,height=360 ,unit=dp,dpi=480"
+)
 @Composable
 fun Showlogin() {
     Login(navController = rememberNavController())

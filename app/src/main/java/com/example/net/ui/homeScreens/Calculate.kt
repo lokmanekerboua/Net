@@ -8,11 +8,16 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -20,7 +25,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.net.R
 import com.example.net.data.model.Operationinfo
+import com.example.net.utils.Constants
 import com.example.net.utils.Constants.Companion.fontfamily
 import com.example.net.utils.operations
 
@@ -30,6 +37,39 @@ fun Calculate(navController: NavController) {
 
     Column(modifier = Modifier.fillMaxSize()) {
 
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(60.dp),
+            contentAlignment = Alignment.Center,
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(start = 15.dp, top = 0.dp, end = 15.dp, bottom = 0.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.net1),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(24.dp)
+                )
+                Text(
+                    text = "Calculator", fontWeight = FontWeight.Bold,
+                    fontFamily = Constants.fontfamily,
+                    fontSize = 18.sp,
+                    textAlign = TextAlign.Start,
+                )
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = null,
+                    modifier = Modifier.clickable {
+
+                    })
+            }
+        }
         LazyVerticalGrid(
             columns = GridCells.Fixed(1),
             contentPadding = PaddingValues(vertical = 12.dp, horizontal = 12.dp),
@@ -55,12 +95,13 @@ fun CardCard(operation: Operationinfo, navController: NavController) {
     ) {
         Column {
             Image(
-                imageVector = operation.icon,
+                painter = painterResource(id = operation.icon),
                 contentDescription = null,
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp)
+                    .padding(top = 10.dp)
             )
 
 

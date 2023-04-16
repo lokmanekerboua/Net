@@ -35,6 +35,7 @@ fun HomeScreen() {
 fun BottomBar(navController: NavHostController) {
     val screens = listOf(
         CalcScreens.Devices,
+        CalcScreens.Pane,
         CalcScreens.Calculate,
         CalcScreens.Profile
     )
